@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setembro Amarelo - Cultura de Paz na Escola</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        :root {
+            --primary: #FFEB3B;
+            --secondary: #FFC107;
+            --accent: #FF9800;
+            --dark: #333;
+            --light: #FFFDE7;
+            --danger: #F44336;
+            --success: #4CAF50;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Header e Navegação */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 2rem;
+            color: var(--dark);
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--dark);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--dark);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover:after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') no-repeat center center;
+            background-size: cover;
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3));
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        /* Cards e Seções */
+        section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--accent);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+        
+        .card h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card h3 i {
+            color: var(--secondary);
+        }
+        
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        /* Recursos e Ajuda */
+        .resources {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .resource-card {
+            background: linear-gradient(135deg, #fff 0%, #f5f5f5 100%);
+            border-left: 5px solid var(--secondary);
+        }
+        
+        /* Testemunhos */
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .testimonial {
+            background: linear-gradient(135deg, var(--light) 0%, #fff 100%);
+            padding: 25px;
+            border-radius: 12px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .testimonial:before {
+            content: """;
+            font-size: 80px;
+            color: var(--secondary);
+            position: absolute;
+            top: -20px;
+            left: 10px;
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+            gap: 10px;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        /* FAQ */
+        .faq-item {
+            margin-bottom: 15px;
+        }
+        
+        .faq-question {
+            background: var(--primary);
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+        
+        .faq-answer {
+            padding: 15px;
+            background: white;
+            border-radius: 0 0 8px 8px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .faq-active .faq-answer {
+            display: block;
+        }
+        
+        /* Call to Action */
+        .cta {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            padding: 60px 0;
+            text-align: center;
+            color: white;
+        }
+        
+        .cta h2 {
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--dark);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--dark);
+        }
+        
+        .btn:hover {
+            background: transparent;
+            color: var(--dark);
+        }
+        
+        .btn-light {
+            background: white;
+            color: var(--dark);
+        }
+        
+        .btn-light:hover {
+            background: transparent;
+            color: white;
+            border-color: white;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            color: white;
+            background: rgba(255,255,255,0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background: var(--primary);
+            color: var(--dark);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* Emergency Banner */
+        .emergency {
+            background: var(--danger);
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            position: sticky;
+            top: 80px;
+            z-index: 999;
+        }
+        
+        .emergency a {
+            color: white;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        
+        /* Ribbon */
+        .ribbon {
+            background: var(--primary);
+            padding: 10px 0;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+        
+        /* Animação */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate {
+            animation: fadeIn 1s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="ribbon">
+        <div class="container">Setembro Amarelo - Mês de prevenção ao suicídio e promoção da vida</div>
+    </div>
+    
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-heart"></i>
+                    <h1>Setembro Amarelo</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#importancia">Importância</a></li>
+                        <li><a href="#ajuda">Como Ajudar</a></li>
+                        <li><a href="#recursos">Recursos</a></li>
+                        <li><a href="#depoimentos">Depoimentos</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <div class="emergency">
+        <div class="container">
+            <p>Precisa de ajuda agora? Ligue para o CVV - 188 | Acesso ao <a href="https://www.cvv.org.br" target="_blank">CVV</a> | Emergência: 190</p>
+        </div>
+    </div>
+    
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Você não está sozinho(a)</h2>
+                <p>Setembro Amarelo é uma campanha de conscientização sobre a prevenção do suicídio e a valorização da vida. Nas escolas, podemos construir juntos um ambiente de acolhimento, respeito e paz.</p>
+                <a href="#ajuda" class="btn btn-light">Saiba como ajudar</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="sobre">
+        <div class="container">
+            <h2 class="section-title">O que é o Setembro Amarelo?</h2>
+            <div class="grid">
+                <div class="card animate">
+                    <h3><i class="fas fa-history"></i> Origem</h3>
+                    <p>Setembro Amarelo é uma campanha brasileira de prevenção ao suicídio, iniciada em 2015. O mês foi escolhido porque o dia 10 de setembro é o Dia Mundial de Prevenção do Suicídio.</p>
+                </div>
+                
+                <div class="card animate">
+                    <h3><i class="fas fa-bullhorn"></i> Objetivo</h3>
+                    <p>A iniciativa promove eventos que abrem espaço para debates sobre saúde mental e divulgação de informações sobre o tema, essencial para reduzir o estigma associado aos transtornos mentais e ao suicídio.</p>
+                </div>
+                
+                <div class="card animate">
+                    <h3><i class="fas fa-school"></i> Nas Escolas</h3>
+                    <p>Nas escolas, o Setembro Amarelo é uma oportunidade para educadores, estudantes e famílias conversarem abertamente sobre emoções, desafios e estratégias de coping saudáveis.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="importancia" class="section-dark" style="background-color: #FFF9C4;">
+        <div class="container">
+            <h2 class="section-title">Como promover a cultura de paz na escola</h2>
+            <div class="grid">
+                <div class="card animate">
+                    <h3><i class="fas fa-ear-listen"></i> Escuta ativa e acolhimento</h3>
+                    <p>Crie espaços seguros para diálogo, onde estudantes possam compartilhar seus sentimentos sem julgamento. A escuta empática é o primeiro passo para ajudar alguém que está passando por dificuldades.</p>
+                </div>
+                
+                <div class="card animate">
+                    <h3><i class="fas fa-ban"></i> Combate ao bullying</h3>
+                    <p>Implemente políticas antibullying claras e promova atividades que celebrem a diversidade e o respeito às diferenças. Bullying é um fator de risco significativo para problemas de saúde mental.</p>
+                </div>
+                
+                <div class="card animate">
+                    <h3><i class="fas fa-heart"></i> Educação emocional</h3>
+                    <p>Incorpore no currículo atividades que desenvolvam inteligência emocional, como identificação de emoções, técnicas de regulação emocional e habilidades de comunicação não-violenta.</p>
+                </div>
+                
+                <div class="card animate">
+                    <h3><i class="fas fa-trophy"></i> Valorização das conquistas</h3>
+                    <p>Reconheça e celebre não apenas achievements acadêmicos, mas também esforços, progressos e qualidades pessoais. Isso fortalece a autoestima e o senso de pertencimento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="sinais">
+        <div class="container">
+            <h2 class="section-title">Sinais de alerta que precisamos conhecer</h2>
+            <div class="card animate">
+                <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                    <div>
+                        <h3><i class="fas fa-exclamation-triangle"></i> Comportamentais</h3>
+                        <ul style="margin-left: 20px; margin-bottom: 15px;">
+                            <li>Isolamento social persistente</li>
+                            <li>Mudanças bruscas de humor ou comportamento</li>
+                            <li>Falta de interesse em atividades antes prazerosas</li>
+                            <li>Descuido com a aparência ou higiene</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3><i class="fas fa-exclamation-triangle"></i> Verbais</h3>
+                        <ul style="margin-left: 20px; margin-bottom: 15px;">
+                            <li>Comentários autodepreciativos frequentes</li>
+                            <li>Falas sobre morte ou suicídio</li>
+                            <li>Expressões de desesperança</li>
+                            <li>Despedidas incomuns</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3><i class="fas fa-exclamation-triangle"></i> Físicos</h3>
+                        <ul style="margin-left: 20px; margin-bottom: 15px;">
+                            <li>Distúrbios de sono ou apetite</li>
+                            <li>Queda no rendimento escolar</li>
+                            <li>Queixas físicas frequentes</li>
+                            <li>Cansaço excessivo</li>
+                        </ul>
+                    </div>
+                </div>
+                <p>Se notar esses sinais em alguém, aproxime-se com cuidado e ofereça apoio. Converse em particular, ouça sem julgamento e incentive a pessoa a buscar ajuda profissional.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="ajuda" style="background-color: #E8F5E9;">
+        <div class="container">
+            <h2 class="section-title">Como oferecer ajuda</h2>
+            <div class="grid">
+                <div class="card animate">
+                    <h3><i class="fas fa-comments"></i> Inicie a conversa</h3>
+                    <p>Encontre um momento tranquilo e privado para conversar. Use frases como "Tenho notado que você parece diferente ultimamente..." ou "Estou preocupado(a) com você...".</p>
+                </div>
+                
+                <div class="card animate">
+                    <h3><i class="fas fa-ear-listen"></i> Ouça com empatia</h3>
+                    <p>Deixe a pessoa falar sem interrupções. Mostre que você se importa e está ali para apoiar, não para julgar ou dar soluções imediatas.</p>
+                </div>
+                
+                <div class="card animate">
+                    <h3><i class="fas fa-hand-holding-heart"></i> Valide os sentimentos</h3>
+                    <p>Evite frases como "Isso é bobagem" ou "Você tem tantos motivos para ser feliz". Em vez disso, diga "Deve ser muito difícil passar por isso" ou "Agradeço por compartilhar isso comigo".</p>
+                </div>
+                
+                <div class="card animate">
+                    <h3><i class="fas fa-hands-helping"></i> Ofereça apoio prático</h3>
+                    <p>Pergunte como você pode ajudar. Ofereça-se para acompanhar a pessoa a um profissional de saúde ou ajudá-la a encontrar recursos de apoio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="depoimentos">
+        <div class="container">
+            <h2 class="section-title">Depoimentos</h2>
+            <div class="testimonials">
+                <div class="testimonial animate">
+                    <p>"Participar das atividades do Setembro Amarelo na minha escola me fez perceber que não estou sozinho nas minhas dificuldades. Aprendi que pedir ajuda é um ato de coragem."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">M</div>
+                        <div>
+                            <strong>Maria, 16 anos</strong>
+                            <p>Estudante do Ensino Médio</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial animate">
+                    <p>"Como educadora, vejo o quanto é importante criar um ambiente onde os alunos se sintam seguros para compartilhar o que sentem. Pequenos gestos de acolhimento fazem uma grande diferença."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">P</div>
+                        <div>
+                            <strong>Prof. Carlos Silva</strong>
+                            <p>Professor de Português</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="recursos" style="background-color: #E3F2FD;">
+        <div class="container">
+            <h2 class="section-title">Recursos e canais de ajuda</h2>
+            <div class="resources">
+                <div class="card resource-card animate">
+                    <h3><i class="fas fa-phone-alt"></i> CVV - Centro de Valorização da Vida</h3>
+                    <p>Telefone: <strong>188</strong> (ligação gratuita)</p>
+                    <p>Site: <a href="https://www.cvv.org.br" target="_blank">www.cvv.org.br</a></p>
+                    <p>Chat online e e-mail também disponíveis</p>
+                </div>
+                
+                <div class="card resource-card animate">
+                    <h3><i class="fas fa-hospital"></i> Busque ajuda profissional</h3>
+                    <p>Unidades Básicas de Saúde (Postos de Saúde)</p>
+                    <p>CAPS - Centros de Atenção Psicossocial</p>
+                    <p>Profissionais de psicologia e psiquiatria</p>
+                </div>
+                
+                <div class="card resource-card animate">
+                    <h3><i class="fas fa-book"></i> Materiais educativos</h3>
+                    <p>Cartilhas sobre saúde mental</p>
+                    <p>Vídeos informativos</p>
+                    <p>Livros e artigos especializados</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="faq">
+        <div class="container">
+            <h2 class="section-title">Perguntas Frequentes</h2>
+            <div class="faq-list">
+                <div class="faq-item card animate">
+                    <div class="faq-question">
+                        <span>Como posso ajudar um amigo que está passando por dificuldades?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ouça sem julgamento, ofereça apoio emocional, incentive a busca por ajuda profissional e esteja presente. Às vezes, apenas mostrar que você se importa já faz uma grande diferença.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item card animate">
+                    <div class="faq-question">
+                        <span>O que fazer se alguém mencionar suicídio?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Leve a sério qualquer menção ao suicídio. Pergunte diretamente sobre seus sentimentos e intenções, ouça com compaixão e busque ajuda profissional imediatamente.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item card animate">
+                    <div class="faq-question">
+                        <span>Como as escolas podem participar do Setembro Amarelo?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Promovendo palestras, debates, oficinas sobre saúde mental, criando espaços de escuta, distribuindo materiais informativos e incentivando a discussão aberta sobre o tema.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta">
+        <div class="container">
+            <h2>Juntos pela valorização da vida</h2>
+            <p>Faça parte desta causa e promova a cultura de paz na sua escola</p>
+            <a href="#recursos" class="btn">Buscar Ajuda</a>
+            <a href="#" class="btn btn-light">Materiais Educativos</a>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Setembro Amarelo</h3>
+                    <p>Promovendo a cultura de paz e saúde mental nas escolas</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Links Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#sobre">Sobre a Campanha</a></li>
+                        <li><a href="#importancia">Importância</a></li>
+                        <li><a href="#sinais">Sinais de Alerta</a></li>
+                        <li><a href="#ajuda">Como Ajudar</a></li>
+                        <li><a href="#recursos">Recursos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contato</h3>
+                    <p><i class="fas fa-envelope"></i> contato@setembroamarelo.com</p>
+                    <p><i class="fas fa-phone"></i> (11) 9999-9999</p>
+                    <p><i class="fas fa-map-marker-alt"></i> São Paulo, Brasil</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Setembro Amarelo - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ interactivity
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('faq-active');
+                
+                const icon = question.querySelector('i');
+                if (item.classList.contains('faq-active')) {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                } else {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
+            });
+        });
+        
+        // Animation on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.card, .testimonial').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
